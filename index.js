@@ -1,25 +1,16 @@
 const cron = require("node-cron");
 const express = require("express");
-const { claimMission } = require("./func/ClaimMission");
-const { claimOfflineProfit } = require("./func/ClaimOfflineProfit");
-const { checkValidToken, validateToken } = require("./func/CheckValidToken");
-const { buyAnimal } = require("./func/BuyAnimal");
-const { buyFactory } = require("./func/BuyFactory");
+
 const { configDotenv } = require("dotenv");
+const { startFarming } = require("./func/startFarming");
+const { claimFarming } = require("./func/claimFarming");
 configDotenv();
 
-async function main() {
-  await claimMission();
-  await claimOfflineProfit();
-  await buyAnimal();
-  console.log(`\n[ BOT ] : Task complete please wait 1 hour...\n`);
-}
-// Schedule the task to run every hour on the hour
-main();
+startFarming();
+claimFarming();
 
-cron.schedule("0 * * * *", claimMission);
-cron.schedule("0 */3 * * *", claimOfflineProfit);
-cron.schedule("0 * * * *", buyAnimal);
+cron.schedule("0 * * * *", startFarming);
+cron.schedule("0 * * * *", claimFarming);
 
 // Start the server
 const port = process.env.PORT || 103;

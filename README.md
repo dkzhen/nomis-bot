@@ -1,4 +1,4 @@
-# cowtopia-bot
+# nomis-bot
 
 cowtopia-bot is a Telegram automation tool designed to help you manage and interact with [cowtopia bot](https://t.me/cowtopiabot/app?startapp=1370196228).
 
@@ -21,7 +21,7 @@ you can clone repository and add your token authorization
 - Clone repository
 
 ```bash
-git clone https://github.com/dkzhen/cowtopia-bot.git
+git clone https://github.com/dkzhen/nomis-bot.git
 ```
 
 - add config.json on folder configs

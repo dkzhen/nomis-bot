@@ -1,7 +1,7 @@
 const { default: axios } = require("axios");
 const { getTokens } = require("./GetTokens");
 const { configDotenv } = require("dotenv");
-const { getOfflineProfit } = require("./repo");
+const { getProfile } = require("./repo");
 configDotenv();
 
 exports.validateToken = async () => {
@@ -10,7 +10,7 @@ exports.validateToken = async () => {
   const validToken = [];
   for (const token of tokens) {
     try {
-      await getOfflineProfit(token.token);
+      await getProfile(token.token, token.userId);
       validToken.push(token);
     } catch (error) {
       console.log(`[ Error ] : token not valid , response code : ${error}`);
