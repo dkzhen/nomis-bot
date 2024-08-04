@@ -4,10 +4,14 @@ const express = require("express");
 const { configDotenv } = require("dotenv");
 const { startFarming } = require("./func/startFarming");
 const { claimFarming } = require("./func/claimFarming");
+const { AuthUserId } = require("./func/AuthUserId");
 configDotenv();
 
-startFarming();
-claimFarming();
+const main = async () => {
+  await claimFarming();
+  await startFarming();
+};
+main();
 
 cron.schedule("0 * * * *", startFarming);
 cron.schedule("0 * * * *", claimFarming);
