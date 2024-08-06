@@ -11,11 +11,20 @@ exports.AuthUserId = async (token) => {
           telegram_user_id: userId,
           telegram_username: username,
           referrer: "",
+        },
+        {
+          headers: {
+            "x-app-init-data": token,
+            Origin: "https://telegram.nomis.cc",
+            Priority: "u=1, i",
+            Referer: "https://telegram.nomis.cc/",
+          },
         }
       );
       return auth.data.id;
     }
   } catch (error) {
+    console.log(error.response.data);
     console.log(error.message);
   }
 };
